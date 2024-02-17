@@ -105,7 +105,10 @@ void Character::use(int idx, ICharacter& target)
 		std::cout << PURPLE << "Nothing to use" << RESET << std::endl;
 }
 
-AMateria    *Character::getMateriaFromInventory(int idx)
+AMateria *Character::getMateriaFromInventory(int idx)
 {
-    return (this->inventory)[idx];
+    if (idx >= 0 && idx < 4)
+        return inventory[idx];
+    else
+        return 0;
 }
