@@ -33,11 +33,14 @@ MateriaSource::MateriaSource(const MateriaSource& other)
 MateriaSource& MateriaSource::operator=(const MateriaSource& other)
 {
     if (this != &other)
-	{
+    {
         for (int i = 0; i < 4; ++i)
-		{
+        {
             delete inventory[i];
-            inventory[i] = other.inventory[i] ? other.inventory[i]->clone() : 0;
+            if (other.inventory[i] != 0)
+                inventory[i] = other.inventory[i]->clone();
+            else
+                inventory[i] = 0;
         }
     }
     return *this;
