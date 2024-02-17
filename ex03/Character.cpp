@@ -35,12 +35,15 @@ Character::Character(const Character& other) : name(other.name + "_copy")
 Character& Character::operator=(const Character& other)
 {
     if (this != &other)
-	{
+    {
         name = other.name;
         for (int i = 0; i < 4; ++i)
-		{
+        {
             delete inventory[i];
-            inventory[i] = other.inventory[i] ? other.inventory[i]->clone() : 0;
+            if (other.inventory[i] != 0)
+                inventory[i] = other.inventory[i]->clone();
+            else
+                inventory[i] = 0;
         }
     }
     return *this;
