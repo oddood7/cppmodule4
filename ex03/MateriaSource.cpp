@@ -22,13 +22,15 @@ MateriaSource::MateriaSource()
 MateriaSource::MateriaSource(const MateriaSource& other) 
 {
     for (int i = 0; i < 4; ++i)
-	{
-		if (other.inventory[i])
-			this->inventory[i] = (other.inventory[i])->clone();
-        //inventory[i] = other.inventory[i] ? other.inventory[i]->clone() : 0;
-	}
-	std::cout << YELLOW << "Materia source was created from copy" << RESET << std::endl;	
+    {
+        if (other.inventory[i] != 0)
+            inventory[i] = other.inventory[i]->clone();
+        else
+            inventory[i] = 0;
+    }
+    std::cout << YELLOW << "Materia source was created from copy" << RESET << std::endl;	
 }
+
 
 MateriaSource& MateriaSource::operator=(const MateriaSource& other)
 {
